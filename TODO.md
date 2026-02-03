@@ -21,7 +21,7 @@
 
 ## Recommended
 
-- [ ] **Add extension icon** - VS Code marketplace requires an icon. Create `media/icon.png` (128x128) and add to package.json:
+- [x] **Add extension icon** - VS Code marketplace requires an icon. Create `media/icon.png` (128x128) and add to package.json:
   ```json
   "icon": "media/icon.png"
   ```
@@ -36,7 +36,7 @@
   }
   ```
 
-- [ ] **Add tests** - Create basic tests for utility functions:
+- [x] **Add tests** - Create basic tests for utility functions:
   - `src/utils/gistFetcher.ts` - test `parseGistId()` with various input formats
   - `src/utils/fileReferenceParser.ts` - test `parseFileReferences()` and `makeFileReferencesClickable()`
 

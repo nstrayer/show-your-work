@@ -4,6 +4,7 @@
   "description": "Share planning context for AI-assisted PRs via GitHub Gists",
   "version": "0.0.1",
   "publisher": "nstrayer",
+  "icon": "media/icon.png",
   "engines": {
     "vscode": "^1.85.0"
   },
