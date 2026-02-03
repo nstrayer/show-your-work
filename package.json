@@ -2,7 +2,7 @@
   "name": "show-your-work",
   "displayName": "Show Your Work",
   "description": "Share planning context for AI-assisted PRs via GitHub Gists",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "publisher": "nstrayer",
   "license": "MIT",
   "icon": "media/icon.png",
@@ -26,7 +26,8 @@
     "onCommand:showYourWork.installClaudeCommand",
     "onCommand:showYourWork.copyPrompt",
     "onCommand:showYourWork.openFromPr",
-    "onWalkthrough:showYourWork.gettingStarted"
+    "onWalkthrough:showYourWork.gettingStarted",
+    "workspaceContains:.claude/commands/show-your-work.md"
   ],
   "main": "./out/extension.js",
   "files": [
@@ -46,7 +47,12 @@
       },
       {
         "command": "showYourWork.openFromPr",
-        "title": "Show Your Work: Open Context from PR"
+        "title": "Show Your Work: Open Context from PR",
+        "icon": "$(book)"
+      },
+      {
+        "command": "showYourWork.statusBarClicked",
+        "title": "Show Your Work: Actions"
       }
     ],
     "walkthroughs": [
@@ -87,7 +93,23 @@
           }
         ]
       }
-    ]
+    ],
+    "menus": {
+      "scm/title": [
+        {
+          "command": "showYourWork.openFromPr",
+          "group": "3_showYourWork",
+          "when": "scmProvider == git"
+        }
+      ],
+      "editor/title": [
+        {
+          "command": "showYourWork.openFromPr",
+          "group": "2_showYourWork",
+          "when": "config.git.enabled && gitOpenRepositoryCount != 0 && isInDiffEditor"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",

@@ -7,6 +7,11 @@ const execAsync = promisify(exec);
 const SHOW_YOUR_WORK_URI_PATTERN =
   /vscode:\/\/nstrayer\.show-your-work\/open\?gist=[a-f0-9]+/gi;
 
+interface DetectedPr {
+  number: number;
+  title: string;
+}
+
 interface ParsedPrInput {
   type: "number" | "url";
   number: string;
@@ -42,6 +47,32 @@ function parsePrInput(input: string): ParsedPrInput | null {
 }
 
 /**
+ * Try to detect a PR associated with the current branch
+ */
+async function detectCurrentBranchPr(): Promise<DetectedPr | null> {
+  try {
+    const workspaceFolder = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
+    if (!workspaceFolder) {
+      return null;
+    }
+
+    const { stdout } = await execAsync(
+      'gh pr view --json number,title --jq "{ number: .number, title: .title }"',
+      { cwd: workspaceFolder }
+    );
+
+    const parsed = JSON.parse(stdout.trim());
+    if (parsed.number && parsed.title) {
+      return { number: parsed.number, title: parsed.title };
+    }
+    return null;
+  } catch {
+    // No PR found for current branch, or gh CLI error
+    return null;
+  }
+}
+
+/**
  * Fetch PR body using gh CLI
  */
 async function fetchPrBody(parsed: ParsedPrInput): Promise<string> {
@@ -69,10 +100,9 @@ function extractShowYourWorkUris(text: string): string[] {
 }
 
 /**
- * Command to open Show Your Work context from a GitHub PR
+ * Prompt user to enter a PR number or URL manually
  */
-export async function openFromPr(): Promise<void> {
-  // Prompt user for PR input
+async function promptForPrInput(): Promise<ParsedPrInput | null> {
   const input = await vscode.window.showInputBox({
     prompt: "Enter a PR number or GitHub PR URL",
     placeHolder:
@@ -90,13 +120,55 @@ export async function openFromPr(): Promise<void> {
   });
 
   if (!input) {
-    return; // User cancelled
+    return null; // User cancelled
   }
 
-  const parsed = parsePrInput(input);
+  return parsePrInput(input);
+}
+
+/**
+ * Command to open Show Your Work context from a GitHub PR
+ */
+export async function openFromPr(): Promise<void> {
+  // Try to detect PR for current branch
+  const detectedPr = await detectCurrentBranchPr();
+
+  let parsed: ParsedPrInput | null = null;
+
+  if (detectedPr) {
+    // Show quick pick with detected PR and option to enter different one
+    const items: vscode.QuickPickItem[] = [
+      {
+        label: `PR #${detectedPr.number}`,
+        description: detectedPr.title,
+        detail: "Current branch",
+      },
+      {
+        label: "Enter different PR...",
+        description: "Specify a PR number or URL",
+      },
+    ];
+
+    const selected = await vscode.window.showQuickPick(items, {
+      placeHolder: "Select a PR to check for Show Your Work context",
+    });
+
+    if (!selected) {
+      return; // User cancelled
+    }
+
+    if (selected.label.startsWith("PR #")) {
+      parsed = { type: "number", number: String(detectedPr.number) };
+    } else {
+      parsed = await promptForPrInput();
+    }
+  } else {
+    // No PR detected, go straight to manual input
+    parsed = await promptForPrInput();
+  }
+
   if (!parsed) {
-    vscode.window.showErrorMessage("Invalid PR input");
-    return;
+    return; // User cancelled or invalid input
   }
 
   // Fetch PR body with progress

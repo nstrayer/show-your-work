@@ -2,6 +2,7 @@ import * as vscode from "vscode";
 import * as path from "path";
 import type { GistData } from "../utils/gistFetcher";
 import { generateWebviewContent } from "./webviewContent";
+import { getStatusBarManager } from "../extension";
 
 const VIEW_TYPE = "showYourWork.contextViewer";
 
@@ -39,6 +40,9 @@ export function createOrShowPanel(
 
   updatePanelContent(currentPanel, context, gist);
 
+  // Notify status bar manager
+  getStatusBarManager()?.onWebviewOpened();
+
   // Handle messages from the webview
   currentPanel.webview.onDidReceiveMessage(
     async (message) => {
@@ -54,6 +58,7 @@ export function createOrShowPanel(
   currentPanel.onDidDispose(
     () => {
       currentPanel = undefined;
+      getStatusBarManager()?.onWebviewClosed();
     },
     undefined,
     context.subscriptions
