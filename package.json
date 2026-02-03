@@ -2,7 +2,7 @@
   "name": "show-your-work",
   "displayName": "Show Your Work",
   "description": "Share planning context for AI-assisted PRs via GitHub Gists",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "publisher": "nstrayer",
   "license": "MIT",
   "icon": "media/icon.png",
@@ -25,7 +25,8 @@
     "onUri",
     "onCommand:showYourWork.installClaudeCommand",
     "onCommand:showYourWork.copyPrompt",
-    "onCommand:showYourWork.openFromPr"
+    "onCommand:showYourWork.openFromPr",
+    "onWalkthrough:showYourWork.gettingStarted"
   ],
   "main": "./out/extension.js",
   "files": [
@@ -46,6 +47,45 @@
       {
         "command": "showYourWork.openFromPr",
         "title": "Show Your Work: Open Context from PR"
+      }
+    ],
+    "walkthroughs": [
+      {
+        "id": "showYourWork.gettingStarted",
+        "title": "Get Started with Show Your Work",
+        "description": "Share planning context for AI-assisted PRs via GitHub Gists",
+        "steps": [
+          {
+            "id": "installCommand",
+            "title": "Install the Claude Command",
+            "description": "Add the Show Your Work command to your workspace's `.claude/commands/` folder. This lets Claude Code generate context gists for your PRs.\n\n[Install Claude Command](command:showYourWork.installClaudeCommand)",
+            "media": {
+              "markdown": "resources/walkthrough-install.md"
+            },
+            "completionEvents": [
+              "onCommand:showYourWork.installClaudeCommand"
+            ]
+          },
+          {
+            "id": "createContext",
+            "title": "Create PR Context",
+            "description": "When working on a feature, run `/show-your-work` in Claude Code. It scans your planning docs and creates a gist with relevant context.\n\nThe command generates a `vscode://` link you can paste into your PR description.",
+            "media": {
+              "markdown": "resources/walkthrough-create.md"
+            }
+          },
+          {
+            "id": "reviewPr",
+            "title": "Review a PR with Context",
+            "description": "When reviewing a PR that has a Show Your Work link, open the context directly in VS Code.\n\n[Open Context from PR](command:showYourWork.openFromPr)",
+            "media": {
+              "markdown": "resources/walkthrough-review.md"
+            },
+            "completionEvents": [
+              "onCommand:showYourWork.openFromPr"
+            ]
+          }
+        ]
       }
     ]
   },
