@@ -45,3 +45,50 @@
 - [x] **Remove unused import** - `src/commands/installCommand.ts` imports `fs` but uses `vscode.workspace.fs` instead
 
 - [x] **Remove empty command** - `showYourWork.openFile` in `src/extension.ts` is registered but does nothing (file opening is handled via webview postMessage in `webviewPanel.ts`)
+
+---
+
+## UX Improvements
+
+### Current Pain Points
+
+- **Zero visual presence** - No sidebar, status bar, or welcome view. Users must know the extension exists and remember command names.
+- **Discoverability gap** - New users have no guidance after installation
+- **No configuration** - Can't customize paths for planning docs, gist visibility, etc.
+- **Isolated commands** - No integration with editor/explorer context menus
+
+### High Impact, Low Effort
+
+- [ ] **Welcome/Walkthrough Experience** - Add a VS Code walkthrough that appears on first install with steps for installing the Claude command, creating PR context, and reviewing PRs.
+
+- [ ] **Status Bar Item** - Show a subtle indicator when viewing a repo that has `.claude/commands/show-your-work.md` installed, or when in a PR context webview. Clicking could open relevant commands.
+
+- [ ] **Explorer Context Menu** - Add "Open Context from PR" to the SCM view or Git extension integration points.
+
+### Medium Impact, Medium Effort
+
+- [ ] **Activity Bar View (Sidebar Panel)** - A dedicated sidebar showing:
+  - Quick actions (Install command, Open from PR, Copy prompt)
+  - Recent gists/contexts viewed
+  - Status of current workspace setup (whether Claude command is installed)
+
+- [ ] **Settings/Configuration** - Add user-configurable settings:
+  - `showYourWork.planningDocPaths` - Custom paths to scan for planning docs
+  - `showYourWork.gistVisibility` - Default to "secret" or "public"
+  - `showYourWork.autoOpenOnUriClick` - Control auto-open behavior
+
+- [ ] **Keyboard Shortcuts** - Add default keybindings for common actions like "Open Context from PR"
+
+### Lower Priority, Higher Effort
+
+- [ ] **Webview Enhancements** - Table of contents for multi-file gists, search within context, collapse/expand sections, "Copy file reference" buttons
+
+- [ ] **SCM Integration** - Show "View PR Context" button in Source Control panel when on a branch with an associated PR containing Show Your Work links
+
+- [ ] **PR Creation Helper** - When creating a PR, offer to scan for planning docs and create the gist automatically
+
+### Recommended First Iteration
+
+1. **Walkthrough** - Zero-friction onboarding, VS Code highlights these to new users
+2. **Status bar item** - Persistent, non-intrusive reminder the extension exists
+3. **Settings** - Users expect configurability; planning doc paths especially
