@@ -12,7 +12,9 @@
     "Other"
   ],
   "activationEvents": [
-    "onUri"
+    "onUri",
+    "onCommand:showYourWork.installClaudeCommand",
+    "onCommand:showYourWork.copyPrompt"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -46,6 +48,7 @@
     "@typescript-eslint/eslint-plugin": "^6.19.0",
     "@typescript-eslint/parser": "^6.19.0",
     "@vscode/test-electron": "^2.3.8",
+    "@vscode/vsce": "^3.7.1",
     "eslint": "^8.56.0",
     "glob": "^10.3.10",
     "mocha": "^10.2.0",
