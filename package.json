@@ -2,7 +2,7 @@
   "name": "show-your-work",
   "displayName": "Show Your Work",
   "description": "Share planning context for AI-assisted PRs via GitHub Gists",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "nstrayer",
   "license": "MIT",
   "icon": "media/icon.png",
@@ -24,7 +24,8 @@
   "activationEvents": [
     "onUri",
     "onCommand:showYourWork.installClaudeCommand",
-    "onCommand:showYourWork.copyPrompt"
+    "onCommand:showYourWork.copyPrompt",
+    "onCommand:showYourWork.openFromPr"
   ],
   "main": "./out/extension.js",
   "files": [
@@ -41,6 +42,10 @@
       {
         "command": "showYourWork.copyPrompt",
         "title": "Show Your Work: Copy Prompt to Clipboard"
+      },
+      {
+        "command": "showYourWork.openFromPr",
+        "title": "Show Your Work: Open Context from PR"
       }
     ]
   },

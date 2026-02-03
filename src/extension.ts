@@ -2,6 +2,7 @@ import * as vscode from "vscode";
 import { ShowYourWorkUriHandler } from "./handlers/uriHandler";
 import { installClaudeCommand } from "./commands/installCommand";
 import { copyPromptToClipboard } from "./commands/copyPrompt";
+import { openFromPr } from "./commands/openFromPr";
 
 export function activate(context: vscode.ExtensionContext): void {
   // Register URI handler for vscode://nstrayer.show-your-work/...
@@ -20,6 +21,12 @@ export function activate(context: vscode.ExtensionContext): void {
     vscode.commands.registerCommand(
       "showYourWork.copyPrompt",
       () => copyPromptToClipboard(context)
+    )
+  );
+
+  context.subscriptions.push(
+    vscode.commands.registerCommand("showYourWork.openFromPr", () =>
+      openFromPr()
     )
   );
 }
