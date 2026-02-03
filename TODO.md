@@ -2,7 +2,7 @@
 
 ## Critical (won't work without these)
 
-- [ ] **Add activation events for commands** - Currently only `onUri` is registered in package.json, so commands won't be available until a URI is opened. Need to add:
+- [x] **Add activation events for commands** - Currently only `onUri` is registered in package.json, so commands won't be available until a URI is opened. Need to add:
   ```json
   "activationEvents": [
     "onCommand:showYourWork.installClaudeCommand",
@@ -10,7 +10,7 @@
   ]
   ```
 
-- [ ] **Bundle resources in VSIX** - `resources/claude-command.md` won't be included in the packaged extension. Add to package.json:
+- [x] **Bundle resources in VSIX** - `resources/claude-command.md` won't be included in the packaged extension. Add to package.json:
   ```json
   "files": [
     "out",
@@ -26,7 +26,7 @@
   "icon": "media/icon.png"
   ```
 
-- [ ] **Add vsce packaging** - Install `@vscode/vsce` as dev dependency and add package script:
+- [x] **Add vsce packaging** - Install `@vscode/vsce` as dev dependency and add package script:
   ```bash
   npm install --save-dev @vscode/vsce
   ```
@@ -42,6 +42,6 @@
 
 ## Cleanup
 
-- [ ] **Remove unused import** - `src/commands/installCommand.ts` imports `fs` but uses `vscode.workspace.fs` instead
+- [x] **Remove unused import** - `src/commands/installCommand.ts` imports `fs` but uses `vscode.workspace.fs` instead
 
-- [ ] **Remove empty command** - `showYourWork.openFile` in `src/extension.ts` is registered but does nothing (file opening is handled via webview postMessage in `webviewPanel.ts`)
+- [x] **Remove empty command** - `showYourWork.openFile` in `src/extension.ts` is registered but does nothing (file opening is handled via webview postMessage in `webviewPanel.ts`)
