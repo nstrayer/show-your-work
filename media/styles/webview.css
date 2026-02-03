@@ -1,0 +1,213 @@
+/* Use VS Code theme variables for consistency */
+:root {
+  --container-padding: 20px;
+  --section-spacing: 24px;
+  --border-radius: 6px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--vscode-font-family);
+  font-size: var(--vscode-font-size);
+  color: var(--vscode-foreground);
+  background-color: var(--vscode-editor-background);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--container-padding);
+}
+
+/* Header */
+.gist-header {
+  margin-bottom: var(--section-spacing);
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--vscode-panel-border);
+}
+
+.gist-header h1 {
+  font-size: 1.5em;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  color: var(--vscode-foreground);
+}
+
+.gist-meta {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  font-size: 0.9em;
+  color: var(--vscode-descriptionForeground);
+}
+
+.gist-link {
+  color: var(--vscode-textLink-foreground);
+  text-decoration: none;
+}
+
+.gist-link:hover {
+  text-decoration: underline;
+  color: var(--vscode-textLink-activeForeground);
+}
+
+/* File sections */
+.gist-file {
+  margin-bottom: var(--section-spacing);
+  border: 1px solid var(--vscode-panel-border);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.file-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background-color: var(--vscode-sideBarSectionHeader-background);
+  border-bottom: 1px solid var(--vscode-panel-border);
+  font-weight: 500;
+}
+
+.file-icon {
+  font-size: 1em;
+}
+
+.file-name {
+  font-family: var(--vscode-editor-font-family);
+  font-size: 0.95em;
+}
+
+.file-content {
+  padding: 16px;
+  background-color: var(--vscode-editor-background);
+}
+
+/* Markdown content styling */
+.file-content h1,
+.file-content h2,
+.file-content h3,
+.file-content h4,
+.file-content h5,
+.file-content h6 {
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  font-weight: 600;
+  color: var(--vscode-foreground);
+}
+
+.file-content h1:first-child,
+.file-content h2:first-child,
+.file-content h3:first-child {
+  margin-top: 0;
+}
+
+.file-content h1 { font-size: 1.4em; }
+.file-content h2 { font-size: 1.25em; }
+.file-content h3 { font-size: 1.1em; }
+
+.file-content p {
+  margin: 0.75em 0;
+}
+
+.file-content ul,
+.file-content ol {
+  margin: 0.75em 0;
+  padding-left: 1.5em;
+}
+
+.file-content li {
+  margin: 0.25em 0;
+}
+
+.file-content a {
+  color: var(--vscode-textLink-foreground);
+  text-decoration: none;
+}
+
+.file-content a:hover {
+  text-decoration: underline;
+}
+
+/* Code blocks */
+.file-content pre {
+  background-color: var(--vscode-textCodeBlock-background);
+  border: 1px solid var(--vscode-panel-border);
+  border-radius: 4px;
+  padding: 12px;
+  overflow-x: auto;
+  margin: 1em 0;
+}
+
+.file-content code {
+  font-family: var(--vscode-editor-font-family);
+  font-size: 0.9em;
+}
+
+.file-content p code,
+.file-content li code {
+  background-color: var(--vscode-textCodeBlock-background);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+/* Blockquotes */
+.file-content blockquote {
+  margin: 1em 0;
+  padding: 0.5em 1em;
+  border-left: 3px solid var(--vscode-textBlockQuote-border);
+  background-color: var(--vscode-textBlockQuote-background);
+  color: var(--vscode-textBlockQuote-foreground);
+}
+
+/* Tables */
+.file-content table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1em 0;
+}
+
+.file-content th,
+.file-content td {
+  border: 1px solid var(--vscode-panel-border);
+  padding: 8px 12px;
+  text-align: left;
+}
+
+.file-content th {
+  background-color: var(--vscode-sideBarSectionHeader-background);
+  font-weight: 600;
+}
+
+/* File reference links */
+.file-reference {
+  color: var(--vscode-textLink-foreground);
+  text-decoration: none;
+  cursor: pointer;
+  border-bottom: 1px dashed var(--vscode-textLink-foreground);
+}
+
+.file-reference:hover {
+  color: var(--vscode-textLink-activeForeground);
+  border-bottom-style: solid;
+}
+
+/* Horizontal rule */
+.file-content hr {
+  border: none;
+  border-top: 1px solid var(--vscode-panel-border);
+  margin: 1.5em 0;
+}
+
+/* Images */
+.file-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
