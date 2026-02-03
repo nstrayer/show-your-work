@@ -22,17 +22,6 @@ export function activate(context: vscode.ExtensionContext): void {
       () => copyPromptToClipboard(context)
     )
   );
-
-  // Register internal command for opening file references from webview
-  context.subscriptions.push(
-    vscode.commands.registerCommand(
-      "showYourWork.openFile",
-      async (args: { path: string; line?: number; column?: number }) => {
-        // This command is called from the webview via postMessage,
-        // handled in webviewPanel.ts
-      }
-    )
-  );
 }
 
 export function deactivate(): void {
