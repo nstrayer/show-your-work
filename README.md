@@ -2,6 +2,12 @@
 
 A VS Code extension that helps developers share planning context for AI-assisted PRs via GitHub Gists, and helps reviewers view that context alongside code.
 
+## Installation
+
+Install from the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=nstrayer.show-your-work) or [Open VSX](https://open-vsx.org/extension/nstrayer/show-your-work).
+
+Or search for "Show Your Work" in the VS Code extensions panel.
+
 ## Features
 
 ### For Contributors
@@ -16,7 +22,13 @@ A VS Code extension that helps developers share planning context for AI-assisted
 
 ### For Reviewers
 
-Click a "Show Your Work" badge in a PR to open the planning context directly in VS Code:
+**Open from PR**: Quickly open planning context from any GitHub PR.
+
+1. Run "Show Your Work: Open Context from PR" from the command palette
+2. Enter a PR number (if you're in a cloned repo) or a full GitHub PR URL
+3. The extension finds and opens any Show Your Work links in the PR description
+
+**Click a badge**: Click a "Show Your Work" badge in a PR to open the planning context directly in VS Code:
 
 ```
 vscode://nstrayer.show-your-work/open?gist=<gist_id>
@@ -38,6 +50,7 @@ The extension displays a rich webview with:
 |---------|-------------|
 | `Show Your Work: Install Claude Command` | Install the Claude Code command file to your workspace |
 | `Show Your Work: Copy Prompt to Clipboard` | Copy the prompt for manual use |
+| `Show Your Work: Open Context from PR` | Open planning context from a GitHub PR number or URL |
 
 ## URI Scheme
 
