@@ -59,9 +59,9 @@
 
 ### High Impact, Low Effort
 
-- [ ] **Welcome/Walkthrough Experience** - Add a VS Code walkthrough that appears on first install with steps for installing the Claude command, creating PR context, and reviewing PRs.
+- [x] **Welcome/Walkthrough Experience** - Add a VS Code walkthrough that appears on first install with steps for installing the Claude command, creating PR context, and reviewing PRs.
 
-- [ ] **Status Bar Item** - Show a subtle indicator when viewing a repo that has `.claude/commands/show-your-work.md` installed, or when in a PR context webview. Clicking could open relevant commands.
+- [ ] **Status Bar Item** (NEXT) - Show a subtle indicator when viewing a repo that has `.claude/commands/show-your-work.md` installed, or when in a PR context webview. Clicking could open relevant commands.
 
 - [ ] **Explorer Context Menu** - Add "Open Context from PR" to the SCM view or Git extension integration points.
 
@@ -89,6 +89,6 @@
 
 ### Recommended First Iteration
 
-1. **Walkthrough** - Zero-friction onboarding, VS Code highlights these to new users
-2. **Status bar item** - Persistent, non-intrusive reminder the extension exists
+1. ~~**Walkthrough**~~ - Done in v0.0.5
+2. **Status bar item** - Persistent, non-intrusive reminder the extension exists (NEXT)
 3. **Settings** - Users expect configurability; planning doc paths especially
