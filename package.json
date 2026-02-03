@@ -4,7 +4,17 @@
   "description": "Share planning context for AI-assisted PRs via GitHub Gists",
   "version": "0.0.1",
   "publisher": "nstrayer",
+  "license": "MIT",
   "icon": "media/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nstrayer/show-your-work"
+  },
+  "homepage": "https://github.com/nstrayer/show-your-work#readme",
+  "bugs": {
+    "url": "https://github.com/nstrayer/show-your-work/issues"
+  },
+  "pricing": "Free",
   "engines": {
     "vscode": "^1.85.0"
   },
@@ -41,7 +51,9 @@
     "lint": "eslint src --ext ts",
     "pretest": "npm run compile",
     "test": "node ./out/test/runTest.js",
-    "package": "vsce package"
+    "package": "vsce package",
+    "publish:vsce": "vsce publish",
+    "publish:ovsx": "ovsx publish"
   },
   "dependencies": {
     "marked": "^12.0.0"
@@ -58,6 +70,7 @@
     "eslint": "^8.56.0",
     "glob": "^10.3.10",
     "mocha": "^10.2.0",
+    "ovsx": "^0.10.8",
     "typescript": "^5.3.3"
   }
 }
