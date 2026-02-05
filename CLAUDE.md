@@ -15,9 +15,12 @@ src/
 ├── extension.ts              # Entry point, registers commands & URI handler
 ├── commands/
 │   ├── installCommand.ts     # Installs Claude command to .claude/commands/
-│   └── copyPrompt.ts         # Copies prompt to clipboard
+│   ├── copyPrompt.ts         # Copies prompt to clipboard
+│   └── openFromPr.ts         # Opens context from PR (auto-detects current branch)
 ├── handlers/
 │   └── uriHandler.ts         # Handles vscode:// URIs, fetches gist, opens viewer
+├── statusBar/
+│   └── statusBarManager.ts   # Status bar item and quick pick menu
 ├── viewer/
 │   ├── webviewPanel.ts       # Creates/manages webview panel
 │   └── webviewContent.ts     # Generates HTML with rendered markdown
@@ -32,6 +35,8 @@ src/
 |---------|-----|-------------|
 | Install Claude Command | `showYourWork.installClaudeCommand` | Creates `.claude/commands/show-your-work.md` in workspace |
 | Copy Prompt | `showYourWork.copyPrompt` | Copies prompt template to clipboard |
+| Open Context from PR | `showYourWork.openFromPr` | Opens context gist from PR (auto-detects current branch) |
+| Status Bar Actions | `showYourWork.statusBarClicked` | Shows quick pick menu with available actions |
 
 ## Key Files
 
@@ -46,6 +51,16 @@ npm run compile # Build
 npm run watch   # Watch mode
 # Press F5 in VS Code to launch extension host
 ```
+
+## Release Process
+
+Releases are automated via GitHub Actions on tag push. Do NOT run `vsce publish` locally.
+
+1. Bump version in `package.json`
+2. Commit and push changes
+3. Create and push tag: `git tag vX.Y.Z && git push origin vX.Y.Z`
+
+GitHub Actions publishes to VS Code Marketplace and Open VSX automatically.
 
 ## Gist Fetching
 

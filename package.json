@@ -2,7 +2,7 @@
   "name": "show-your-work",
   "displayName": "Show Your Work",
   "description": "Share planning context for AI-assisted PRs via GitHub Gists",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "publisher": "nstrayer",
   "license": "MIT",
   "icon": "media/icon.png",
