@@ -23,9 +23,7 @@ Create a GitHub Gist containing planning context for this PR to help reviewers u
 4. **Output badge options for the PR:**
 
 ```markdown
-[![Show Your Work](https://img.shields.io/badge/Show_Your_Work-View_Context-blue?logo=github)](vscode://nstrayer.show-your-work/open?gist=GIST_ID)
-
-[View planning context](https://gist.github.com/USERNAME/GIST_ID) | [Open in VS Code](vscode://nstrayer.show-your-work/open?gist=GIST_ID)
+[![Show Your Work](https://img.shields.io/badge/Show_Your_Work-View_Context-blue?logo=github)](https://gist.github.com/USERNAME/GIST_ID)
 ```
 
 Replace `GIST_ID` and `USERNAME` with the actual values from the created gist.
@@ -49,5 +47,5 @@ Creating gist...
 Gist created: https://gist.github.com/nstrayer/abc123
 
 Add this to your PR description:
-[![Show Your Work](https://img.shields.io/badge/Show_Your_Work-View_Context-blue?logo=github)](vscode://nstrayer.show-your-work/open?gist=abc123)
+[![Show Your Work](https://img.shields.io/badge/Show_Your_Work-View_Context-blue?logo=github)](https://gist.github.com/nstrayer/abc123)
 ```
